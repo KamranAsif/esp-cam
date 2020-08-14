@@ -1,0 +1,18 @@
+{
+  "cpu": {
+    "fqbn": "esp32:esp32:esp32cam",
+    "name": "ESP32 CAM",
+    "type": ""
+  },
+  "secrets": [
+    {
+      "name": "SECRET_SSID",
+      "value": ""
+    },
+    {
+      "name": "SECRET_PASS",
+      "value": ""
+    }
+  ],
+  "included_libs": []
+}

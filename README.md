@@ -28,6 +28,6 @@ arduino-cli compile --fqbn esp32:esp32:esp32cam EspCam
 Upload
 *Make sure GIPO 0 pin is shorted*
 ```
-arduino-cli upload -p /dev/tty.usbserial-A50285BI --fqbn esp32:esp32:esp32cam EspCam
+arduino-cli upload -p <dev_port> --fqbn esp32:esp32:esp32cam EspCam
 ```
 
