@@ -3,7 +3,7 @@
 Install CLI
 ```
 brew install arduino-cli
-
+```
 
 Init config
 ```
