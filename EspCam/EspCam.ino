@@ -8,16 +8,17 @@
   copies or substantial portions of the Software.
 *********/
 
-#include "secrets.h"
-#include "esp_camera.h"
-#include <WiFi.h>
-#include "esp_timer.h"
-#include "img_converters.h"
 #include "Arduino.h"
-#include "fb_gfx.h"
-#include "soc/soc.h" //disable brownout problems
-#include "soc/rtc_cntl_reg.h"  //disable brownout problems
+#include "esp_camera.h"
 #include "esp_http_server.h"
+#include "esp_timer.h"
+#include "fb_gfx.h"
+#include "img_converters.h"
+#include "secrets.h"
+#include "soc/rtc_cntl_reg.h"  //disable brownout problems
+#include "soc/soc.h" //disable brownout problems
+#include <ESPmDNS.h>
+#include <WiFi.h>
 
 //Replace with your network credentials
 const char* ssid = SECRET_SSID;
@@ -179,12 +180,22 @@ void setup() {
   }
   Serial.println("");
   Serial.println("WiFi connected");
+
+
+  if (!MDNS.begin("esp32cam")) {
+    Serial.println("Error setting up MDNS responder!");
+  }
+  Serial.println("mDNS responder started");
   
   Serial.print("Camera Stream Ready! Go to: http://");
   Serial.print(WiFi.localIP());
   
   // Start streaming web server
   startCameraServer();
+
+  // Add service to MDNS-SD
+  MDNS.addService("http", "tcp", 80);
+
 }
 
 void loop() {
